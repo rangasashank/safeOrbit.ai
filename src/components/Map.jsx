@@ -37,8 +37,8 @@ function Map({ disasters }) {
           <Marker
             key={disaster.id}
             position={{ lat: disaster.latitude, lng: disaster.longitude }}
-            title={disaster.type}
-            label={disaster.type}
+            title={disaster.type.split(":")[0]}
+            label={disaster.type.split(":")[0]}
           />
         ))}
       </GoogleMap>
