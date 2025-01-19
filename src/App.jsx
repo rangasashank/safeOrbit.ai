@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
 import ReportDisaster from "./pages/ReportDisaster";
-import Alerts from "./pages/Alerts";
+
 import Chat from "./pages/Chat";
 import "./index.css"; 
 
@@ -16,7 +16,6 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/report" element={<ReportDisaster />} />
           <Route path="/chat" element={<Chat />} />
-          <Route path="/alerts" element={<Alerts />} />
         </Routes>
       </main>
     </Router>
