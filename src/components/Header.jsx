@@ -30,12 +30,6 @@ function Header() {
             >
               Report Disaster
             </Link>
-            <Link
-              to="/chat"
-              className="text-gray-600 hover:text-white hover:bg-blue-500 hover:scale-110 transition transform px-4 py-2 rounded font-medium"
-            >
-              Chat
-            </Link>
           </nav>
         </div>
       </header>
