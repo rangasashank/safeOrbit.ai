@@ -6,8 +6,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../services/firebaseConfig"; // Adjust the path to your Firebase config
 import Chat from "./Chat";
 
-const AMBEE_API_KEY =
-  "a924212dfa4c5d4d5f46c8cf5414d3039ea811449f17ad6725f0094993413794"; // Replace with your API key
+ // Replace with your API key
 
 function Dashboard() {
   const { location, error } = useUserLocation();
@@ -48,7 +47,7 @@ function Dashboard() {
           await updateDisasters(
             location.latitude,
             location.longitude,
-            AMBEE_API_KEY,
+            process.env.AMBEE_API_KEY,
             process.env.VITE_GOOGLE_MAPS_API_KEY
           );
           await fetchUpdatedDisasters();
