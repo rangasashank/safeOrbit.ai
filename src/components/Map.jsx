@@ -1,50 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import React, { useMemo } from "react";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
-const containerStyle = {
-  width: "100%",
-  height: "400px",
-};
+const Map = ({ disasters }) => {
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: process.env.VITE_GOOGLE_MAPS_API_KEY, // Your API key
+  });
 
-const center = {
-  lat: 37.7749,
-  lng: -122.4194,
-};
+  const center = useMemo(() => ({ lat: 49.2827, lng: -123.1207 }), []);
 
-function Map({ disasters }) {
-    const apiKey = process.env.VITE_GOOGLE_MAPS_API_KEY;
-    const [userLocation, setUserLocation] = useState(null);
-      
-        useEffect(() => {
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-              (position) => {
-                const { latitude, longitude } = position.coords;
-                setUserLocation({ lat: latitude, lng: longitude });
-              },
-              (error) => {
-                console.error("Error fetching location:", error);
-              }
-            );
-          }
-        }, []);
-        const defaultCenter = userLocation || { lat: 37.7749, lng: -122.4194 }; // Default to San Francisco
+  if (loadError) return <div>Error loading maps</div>;
+  if (!isLoaded) return <div>Loading...</div>;
+
   return (
-
-    <LoadScript googleMapsApiKey={apiKey}>
-      <GoogleMap mapContainerStyle={containerStyle} center={defaultCenter} zoom={6}>
-        {disasters.map((disaster) => (
-          <Marker
-            key={disaster.id}
-            position={{ lat: disaster.latitude, lng: disaster.longitude }}
-            title={disaster.type}
-            label={disaster.type}
-          />
-        ))}
-      </GoogleMap>
-    </LoadScript>
+    <GoogleMap
+      mapContainerStyle={{ width: "100%", height: "70%" }}
+      zoom={10}
+      center={center}
+    >
+      {disasters.map((disaster) => (
+        <Marker
+          key={disaster.id}
+          position={{
+            lat: disaster.latitude,
+            lng: disaster.longitude,
+          }}
+        />
+      ))}
+    </GoogleMap>
   );
-}
-
+};
 
 export default Map;
