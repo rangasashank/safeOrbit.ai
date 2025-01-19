@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
 import "./index.css";
 import ReportDisaster from "./pages/ReportDisaster";
-
+import Chat from "./pages/Chat";
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/report" element={<ReportDisaster />} />
-          {/* <Route path="/chat" element={<Chat />} /> */}
+          <Route path="/chat" element={<Chat />} />
 
 
         </Routes>
