@@ -1,8 +1,4 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Steps to Run safeOrbit.ai accurately
+1. npm install
+2. In a new terminal instance run the proxy server by typing node proxy.js
+3. In another terminal type npm run dev to launch website, takes a little while to load the data. Didn't get time to add a login screen or use redux, maybe later!
