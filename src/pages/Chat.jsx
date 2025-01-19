@@ -4,6 +4,7 @@ import ChatForm from '../components/ChatForm';
 import ChatMessage from '../components/ChatMessage';
 import '../components/Chatbot.css';
 import useUserLocation from '../hooks/useUserLocation';
+import { FaRobot } from "react-icons/fa";
 
 
 
@@ -92,7 +93,7 @@ const Chat = ({disasters}) => {
   return (
     <div className={`container ${showChatbot ? "show-chatbot" : ""}`}>
       <button onClick={() => setShowChatbot((prev) => !prev)} id="chatbot-toggler">
-        <span className="material-symbols-rounded">AI HELP</span>
+        <span className="material-symbols-rounded"><FaRobot /></span>
         <span className="material-symbols-rounded">close</span>
       </button>
 

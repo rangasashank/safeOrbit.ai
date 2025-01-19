@@ -13,7 +13,7 @@ const Map = ({ disasters }) => {
 
   return (
     <GoogleMap
-      mapContainerStyle={{ width: "100%", height: "70%" }}
+      mapContainerStyle={{ width: "100%", height: "100%" }}
       zoom={10}
       center={center}
     >
