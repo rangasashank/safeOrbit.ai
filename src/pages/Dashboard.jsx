@@ -97,24 +97,24 @@ function Dashboard() {
             <h2 className="text-2xl text-center font-bold text-gray-800 mb-4">
               Recent Disasters
             </h2>
-            <ul className='space-y-4'>
-      {[
-        ...disasters.slice(0, 6),
-        ...Array(Math.max(0, 6 - disasters.length)).fill({ type: "N/A", description: "No data available" }),
-      ].map((disaster, index) => (
-        <li
-          key={index}
-          className={`p-4 bg-gray-100 border border-gray-300 shadow rounded-lg hover:bg-gray-50 transition transition-all transform duration-700 delay-${index * 750} ${
-            isStacked ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
+            <ul className="space-y-4">
+  {disasters
+    .filter((disaster) => disaster.type && disaster.type !== "N/A") // Only include disasters with valid types
+    .map((disaster, index) => (
+      <li
+        key={index}
+        className={`p-4 bg-gray-100 border border-gray-300 shadow rounded-lg hover:bg-gray-50 transition-all transform duration-700 delay-${index * 750} ${
+          isStacked ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
         }`}
-        >
-          <h3 className="text-lg font-bold text-gray-700">
-            {disaster.type ? disaster.type.split(":")[0] : "N/A"}
-          </h3>
-          <p className="text-gray-600">{disaster.description || "No description provided"}</p>
-        </li>
-      ))}
-    </ul>
+      >
+        <h3 className="text-lg font-bold text-gray-700">
+          {disaster.type ? disaster.type.split(":")[0] : "N/A"}
+        </h3>
+        <p className="text-gray-600">{disaster.description || "No description provided"}</p>
+      </li>
+    ))}
+</ul>
+
   </div>
         )}
 

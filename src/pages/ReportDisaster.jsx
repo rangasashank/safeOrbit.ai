@@ -36,7 +36,7 @@ function ReportDisaster() {
       };
 
       // Prepare the prompt
-      const prompt = `Analyze the following data and provide a severity score. The output should be one of: Severity: Low, Severity: Medium, or Severity: High.
+      const prompt = `Analyze the following data and provide a severity score. Also, there can be images that don't have any natural disaster you need identify it . The output should be one of: Severity:None (if image provided shows no natural disaster even though description says), Severity: Low, Severity: Medium, or Severity: High.
       
       DATA:
       Type: ${type}
@@ -48,18 +48,21 @@ function ReportDisaster() {
 
       // Extract and handle the response
       const severityResponse = result.response.text();
-      setSeverity(severityResponse); // Update the severity state
+      console.log("Severity response:", severityResponse);
+      setSeverity(severityResponse.split("\n")[0]);
 
       // Add the disaster report to Firestore
-      await addDoc(collection(db, "disasters"), {
-        type,
-        description: `${description} | Severity: ${severityResponse}`, // Append severity to description
-        latitude: parseFloat(location.latitude),
-        longitude: parseFloat(location.longitude),
-        date: serverTimestamp(),
-      });
+      
+        await addDoc(collection(db, "disasters"), {
+          type,
+          description: `${description} | ${severityResponse}`, // Append severity to description
+          latitude: parseFloat(location.latitude),
+          longitude: parseFloat(location.longitude),
+          date: serverTimestamp(),
+        });
+     
 
-      alert(`Disaster reported successfully! Severity: ${severityResponse}`);
+      alert(`Disaster reported successfully! ${severityResponse}`);
       setType("");
       setDescription("");
       setPhoto(null);
